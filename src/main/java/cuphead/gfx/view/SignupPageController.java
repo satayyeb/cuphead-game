@@ -6,10 +6,13 @@ import cuphead.gfx.model.Database;
 import cuphead.gfx.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class SignupPageController {
@@ -71,11 +74,11 @@ public class SignupPageController {
         Main.gotoMenu("main-menu");
     }
 
-    private File getRandomAvatar() {
+    private String getRandomAvatar() {
         try {
-            File[] avatars = new File("./media/avatars/").listFiles();
+            List<String> filePaths = Controller.getPNGFilesInDir("/cuphead/gfx/media/avatars/");
             Random random = new Random(System.currentTimeMillis());
-            return avatars[random.nextInt(avatars.length)];
+            return filePaths.get(random.nextInt(filePaths.size()));
         } catch (Exception e) {
             System.out.println("Can not pick a random avatar / " + e.getMessage());
         }

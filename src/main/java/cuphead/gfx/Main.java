@@ -15,8 +15,8 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Main extends Application {
-    public static final Music click = new Music("./media/slider.mp3", false);
-    public static final Music music = new Music("./media/track2.mp3", true);
+    public static final Music click = new Music("/cuphead/gfx/media/slider.mp3", false);
+    public static final Music music = new Music("/cuphead/gfx/media/track2.mp3", true);
     private static final Scene scene = new Scene(loadFxml("login-page"));
     private static Stage stage;
 
@@ -24,19 +24,23 @@ public class Main extends Application {
         launch();
     }
 
+    public static String getResource(String name) {
+        return Objects.requireNonNull(Main.class.getResource(name)).toExternalForm();
+    }
+
     @Override
     public void start(Stage stage) {
         stage.setTitle("Cuphead");
         stage.setScene(scene);
         try {
-            stage.getIcons().add(new Image(new FileInputStream("./media/icon.png")));
+            stage.getIcons().add(new Image(String.valueOf(Main.class.getResource("/cuphead/gfx/media/icon.png"))));
         } catch (Exception e) {
             System.out.println("cannot load icon / " + e.getMessage());
         }
         stage.setMaximized(true);
         Main.stage = stage;
         stage.show();
-        gotoMenu("game");
+//        gotoMenu("game");
     }
 
     public static void gotoMenu(String name) {
@@ -53,8 +57,8 @@ public class Main extends Application {
         try {
 //            URL url = new URL(Objects.requireNonNull(Main.class.getResource("/cuphead/gfx/fxml/" + name + ".fxml")).toString());
 //            return FXMLLoader.load(url);
-            String path = "./src/main/resources/cuphead/gfx/fxml/" + name + ".fxml";
-            return FXMLLoader.load(new File(path).toURI().toURL());
+//            String path = Main.getResource("/cuphead/gfx/fxml/" + name + ".fxml");
+            return FXMLLoader.load(new URL(getResource("/cuphead/gfx/fxml/" + name + ".fxml")));
         } catch (Exception e) {
             System.out.println(Arrays.toString(e.getStackTrace()));
             return null;

@@ -9,19 +9,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-import java.io.FileInputStream;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.List;
 
-public class Egg  implements Serializable {
+public class Egg implements Serializable {
     private ImageView egg = new ImageView();
 
     public Egg(ImageView boss, Pane root, List<Egg> eggs) {
         try {
-//            egg = new ImageView(new Image(new FileInputStream("./media/egg.png")));
-            URL x = getClass().getResource("/cuphead/gfx/egg.png");
-            egg = new ImageView(new Image(x.toExternalForm()));
+            egg = new ImageView(new Image(Main.getResource("/cuphead/gfx/media/egg.png")));
         } catch (Exception e) {
             System.out.println("cannot load egg image / " + e.getMessage());
             System.exit(-1);

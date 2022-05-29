@@ -1,5 +1,6 @@
 package cuphead.gfx.view;
 
+import cuphead.gfx.Main;
 import cuphead.gfx.controller.Controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,8 +22,8 @@ public class BirdBomb  implements Serializable {
 
     public BirdBomb(final Pane root, double x, double y) {
         try {
-            for (File file : Controller.getPNGFilesInDir("./media/miniBossDeath/"))
-                frames.add(new Image(new FileInputStream(file)));
+            for (String file : Controller.getPNGFilesInDir("/cuphead/gfx/media/miniBossDeath/"))
+                frames.add(new Image(Main.getResource(file)));
         } catch (Exception e) {
             System.out.println("cannot load dust images / " + e.getMessage());
         }

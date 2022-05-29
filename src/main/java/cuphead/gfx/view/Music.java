@@ -1,5 +1,6 @@
 package cuphead.gfx.view;
 
+import cuphead.gfx.Main;
 import javafx.scene.media.AudioClip;
 
 import java.io.File;
@@ -10,7 +11,8 @@ public class Music  implements Serializable {
 
     public Music(String path, boolean repeat) {
         try {
-            audioClip = new AudioClip(new File(path).toURI().toString());
+            String x = Main.getResource(path);
+            audioClip = new AudioClip(x);
             if (repeat)
                 audioClip.setCycleCount(AudioClip.INDEFINITE);
             audioClip.play();

@@ -1,15 +1,18 @@
 package cuphead.gfx.model;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import cuphead.gfx.Main;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Database {
-    private static final String savedUsersPath = "./data/users.dat";
+    private static final String savedUsersPath = Main.getResource("/cuphead/gfx/data/");//"./data/users.dat";
     private static List<User> users = new ArrayList<>();
     private static User loggedInUser;
     private static int difficulty;
@@ -39,7 +42,9 @@ public class Database {
 
     public static void saveUsers() {
         try {
-            FileOutputStream fileStream = new FileOutputStream(savedUsersPath);
+            String filename = Objects.requireNonNull(Main.class.getResource("/cuphead/gfx/data/")) + "users.dat";
+            filename = filename.substring(6);
+            FileOutputStream fileStream = new FileOutputStream(filename);
             ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
             objectStream.writeObject(users);
             objectStream.close();
@@ -52,7 +57,7 @@ public class Database {
 
     private static void loadUsers() {
         try {
-            FileInputStream fileStream = new FileInputStream(savedUsersPath);
+            InputStream fileStream = Main.class.getResourceAsStream("/cuphead/gfx/data/users.dat");
             ObjectInputStream objectStream = new ObjectInputStream(fileStream);
             users = (List<User>) objectStream.readObject();
             fileStream.close();

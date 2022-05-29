@@ -86,7 +86,7 @@ public class GameController implements Serializable {
         }
 
         //load background image
-        ImageView background = new ImageView(new Image(new FileInputStream("./media/background.png")
+        ImageView background = new ImageView(new Image(Main.getResource("/cuphead/gfx/media/background.png")
                 , Main.getStage().getWidth(), Main.getStage().getHeight(), false, true));
         pane.getChildren().add(background);
 
@@ -138,13 +138,13 @@ public class GameController implements Serializable {
 
         //music configuration
         Main.music.stop();
-        music = new Music("./media/track1.mp3", true);
+        music = new Music("/cuphead/gfx/media/track1.mp3", true);
 
         //load cuphead images
         List<Image> planeFrames = new ArrayList<>();
         try {
-            for (File file : Controller.getPNGFilesInDir("./media/cuphead/"))
-                planeFrames.add(new Image(new FileInputStream(file)));
+            for (String file : Controller.getPNGFilesInDir("/cuphead/gfx/media/cuphead/"))
+                planeFrames.add(new Image(Main.getResource(file)));
         } catch (Exception e) {
             System.out.println("cannot load cuphead image / " + e.getMessage());
             System.exit(-1);
@@ -207,7 +207,7 @@ public class GameController implements Serializable {
                 if (shooting && (now - lastFrameTime) > 200000000) {
                     lastFrameTime = now;
                     try {
-                        Image bulletImage = new Image(new FileInputStream("./media/bullet.png"));
+                        Image bulletImage = new Image(Main.getResource("/cuphead/gfx/media/bullet.png"));
                         ImageView bullet = new ImageView(bulletImage);
                         bullet.setViewOrder(0);
                         Random random = new Random();
@@ -215,7 +215,7 @@ public class GameController implements Serializable {
                         bullet.setY(cuphead.getY() + random.nextInt(40, 70));
                         pane.getChildren().add(bullet);
                         bullets.add(bullet);
-                        Music music = new Music("./media/shot.mp3", false);
+                        Music music = new Music("/cuphead/gfx/media/shot.mp3", false);
                         music.setVolume(0.1);
 
                     } catch (Exception e) {
@@ -304,7 +304,10 @@ public class GameController implements Serializable {
                 username = "guest";
             else
                 username = Database.getLoggedInUser().getUsername();
-            FileOutputStream fileStream = new FileOutputStream("./data/" + username + ".dat");
+
+            String filename = Objects.requireNonNull(Main.class.getResource("/cuphead/gfx/data/")) + username + ".dat";
+            filename = filename.substring(6);
+            FileOutputStream fileStream = new FileOutputStream(filename);
             ObjectOutputStream objectStream = new ObjectOutputStream(fileStream);
             objectStream.writeObject(Database.getLoggedInUser());
             objectStream.writeObject(myLive);

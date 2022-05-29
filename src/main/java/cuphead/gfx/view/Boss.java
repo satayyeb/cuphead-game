@@ -21,10 +21,10 @@ public class Boss  implements Serializable {
 
     private void loadFrames() {
         try {
-            for (File file : Controller.getPNGFilesInDir("./media/boss/"))
-                bossFrames.add(new Image(new FileInputStream(file)));
-            for (File file : Controller.getPNGFilesInDir("./media/bossShoot/"))
-                bossShootFrames.add(new Image(new FileInputStream(file)));
+            for (String file : Controller.getPNGFilesInDir("/cuphead/gfx/media/boss/"))
+                bossFrames.add(new Image(Main.getResource(file)));
+            for (String file : Controller.getPNGFilesInDir("/cuphead/gfx/media/bossShoot/"))
+                bossShootFrames.add(new Image(Main.getResource(file)));
         } catch (Exception e) {
             System.out.println("cannot load boss images / " + e.getMessage());
             System.exit(-1);

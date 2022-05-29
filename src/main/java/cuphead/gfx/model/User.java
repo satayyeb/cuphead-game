@@ -6,13 +6,13 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String username;
     private String password;
-    private File avatar;
+    private String avatarPath;
     private int score;
 
-    public User(String username, String password, File avatar) {
+    public User(String username, String password, String avatarPath) {
         this.username = username;
         this.password = password;
-        this.avatar = avatar;
+        this.avatarPath = avatarPath;
     }
 
     public String getUsername() {
@@ -42,12 +42,12 @@ public class User implements Serializable {
         Database.saveUsers();
     }
 
-    public File getAvatar() {
-        return avatar;
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
-    public void setAvatar(File avatar) {
-        this.avatar = avatar;
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
         Database.saveUsers();
     }
 }

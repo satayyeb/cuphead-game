@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 
 public class MainMenuController {
@@ -56,7 +57,7 @@ public class MainMenuController {
             username = Database.getLoggedInUser().getUsername();
 
         try {
-            FileInputStream fileStream = new FileInputStream("./data/" + username + ".dat");
+            InputStream fileStream = Main.class.getResourceAsStream("/cuphead/gfx/data/" + username + ".dat");
             ObjectInputStream objectStream = new ObjectInputStream(fileStream);
 
             Database.getSavings().user = (User) objectStream.readObject();

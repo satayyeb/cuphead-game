@@ -25,8 +25,8 @@ public class MiniBossGroup  implements Serializable {
 
     public MiniBossGroup(Pane root) {
         try {
-            for (File file : Controller.getPNGFilesInDir("./media/miniBossYellow/"))
-                frames.add(new Image(new FileInputStream(file)));
+            for (String file : Controller.getPNGFilesInDir("/cuphead/gfx/media/miniBossYellow/"))
+                frames.add(new Image(Main.getResource(file)));
         } catch (Exception e) {
             System.out.println("cannot load miniBoss image / " + e.getMessage());
         }

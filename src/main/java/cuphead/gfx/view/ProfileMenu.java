@@ -6,18 +6,18 @@ import cuphead.gfx.model.Database;
 import cuphead.gfx.model.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileMenu {
 
@@ -35,7 +35,12 @@ public class ProfileMenu {
         leftMenu.getChildren().add(1, score);
         leftMenu.getChildren().add(2, emptySpace);
         try {
-            Image image = new Image(new FileInputStream(Database.getLoggedInUser().getAvatar()));
+            Image image;
+            try {
+                image = new Image(Main.getResource(Database.getLoggedInUser().getAvatarPath()));
+            } catch (Exception e) {
+                image = new Image(Database.getLoggedInUser().getAvatarPath());
+            }
             ImageView imageView = new ImageView(image);
             imageView.setFitHeight(150);
             imageView.setFitWidth(150);
@@ -80,13 +85,15 @@ public class ProfileMenu {
             Text title = new Text("برای خود یک آواتار انتخاب کنید.");
             title.setStyle("-fx-font-size: 36");
             profileSettings.getChildren().add(title);
-            File[] avatars = new File("./media/avatars/").listFiles();
+            List<Image> avatars = new ArrayList<>();
+            List<String> filePaths = Controller.getPNGFilesInDir("/cuphead/gfx/media/avatars/");
+            for (String path : filePaths)
+                avatars.add(new Image(Main.getResource(path)));
             GridPane gridPane = new GridPane();
             gridPane.setHgap(10);
             gridPane.setVgap(10);
             for (int i = 0; i < 10; i++) {
-                Image image = new Image(new FileInputStream(avatars[i]));
-                ImageView imageView = new ImageView(image);
+                ImageView imageView = new ImageView(avatars.get(i));
                 imageView.setFitHeight(175);
                 imageView.setFitWidth(175);
                 Hyperlink link = new Hyperlink();
@@ -94,7 +101,7 @@ public class ProfileMenu {
                 int finalI = i;
                 link.setOnMouseClicked(event -> {
                     Main.click.play();
-                    Database.getLoggedInUser().setAvatar(avatars[finalI]);
+                    Database.getLoggedInUser().setAvatarPath(filePaths.get(finalI));
                     leftMenu.getChildren().remove(0, 5);
                     initialize();
                 });
@@ -117,7 +124,7 @@ public class ProfileMenu {
         Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            Database.getLoggedInUser().setAvatar(file);
+            Database.getLoggedInUser().setAvatarPath(file.getAbsolutePath());
             leftMenu.getChildren().remove(0, 5);
             initialize();
         }

@@ -1,5 +1,6 @@
 package cuphead.gfx.view;
 
+import cuphead.gfx.Main;
 import cuphead.gfx.controller.Controller;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,9 +22,9 @@ public class Dust  implements Serializable {
 
     public Dust(final Pane root, double x, double y, boolean isBird) {
         try {
-            String path = isBird ? "./media/miniBossDeath/" : "./media/dust/";
-            for (File file : Controller.getPNGFilesInDir(path))
-                frames.add(new Image(new FileInputStream(file)));
+            String path = isBird ? "/cuphead/gfx/media/miniBossDeath/" : "/cuphead/gfx/media/dust/";
+            for (String file : Controller.getPNGFilesInDir(path))
+                frames.add(new Image(Main.getResource(file)));
 
         } catch (Exception e) {
             System.out.println("cannot load dust images / " + e.getMessage());
