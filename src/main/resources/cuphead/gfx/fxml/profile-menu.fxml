@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cuphead.gfx.view.ProfileMenu"
+            prefHeight="500" prefWidth="1200"
+            stylesheets="@../css/style.css">
+
+
+    <left>
+        <VBox fx:id="leftMenu" style="-fx-background-color: #cfacff" alignment="CENTER">
+            <Button text="تغییر آواتار" styleClass="innerButton" onAction="#changeAvatar"/>
+            <Button text="تغییر گذرواژه" styleClass="innerButton" onAction="#changePassword"/>
+            <Button text="تغییر نام کاربری" styleClass="innerButton" onAction="#changeUsername"/>
+            <Button text="خروج از حساب کاربری" styleClass="innerButton" onAction="#logout"/>
+            <Button text="حذف حساب کاربری" styleClass="innerButton" onAction="#deleteAccount"/>
+            <Button text="بازگشت" styleClass="innerButton" onAction="#returnToMainMenu"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox fx:id="profileSettings" alignment="CENTER" spacing="10" maxWidth="500"/>
+    </center>
+
+</BorderPane>

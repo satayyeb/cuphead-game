@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cuphead.gfx.view.GameController"
+            prefHeight="500" prefWidth="1200"
+            stylesheets="@../css/style.css"
+            fx:id="pane" styleClass="backgroundImage">
+    <top>
+        <VBox fx:id="upperHead" viewOrder="-1" alignment="CENTER" spacing="50" style="-fx-padding: 4">
+            <VBox alignment="CENTER" spacing="10">
+                <VBox fx:id="head" alignment="CENTER" spacing="5" style="-fx-padding: 4"/>
+                <HBox fx:id="liveBar" alignment="CENTER" spacing="100"/>
+            </VBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox fx:id="center" alignment="CENTER" spacing="50"/>
+    </center>
+</BorderPane>

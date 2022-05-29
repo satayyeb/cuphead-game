@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cuphead.gfx.view.LoginPageController"
+            prefHeight="500" prefWidth="1200" stylesheets="@../css/style.css">
+    <center>
+        <VBox alignment="CENTER" maxWidth="450" spacing="13">
+            <Text styleClass="title" text="ورود"/>
+            <Text/>
+            <HBox spacing="15">
+                <TextField fx:id="username" onKeyReleased="#checkEnter"
+                           promptText="نام کاربری خود را اینجا وارد کنید."/>
+                <Text text="نام کاربری:"/>
+            </HBox>
+            <HBox spacing="15">
+                <PasswordField fx:id="password" onKeyReleased="#checkEnter"
+                               promptText="گذرواژه خود را اینجا وارد کنید."/>
+                <Text text="گذرواژه:"/>
+            </HBox>
+            <Text styleClass="medium" fx:id="error"/>
+            <Button text="ورود" onMouseClicked="#login" onKeyReleased="#checkEnter"/>
+            <VBox alignment="CENTER" spacing="1">
+                <Hyperlink onAction="#gotoSignupMenu" text="حساب کاربری ندارید؟ یکی بسازید."/>
+                <Hyperlink onAction="#guest" text="به عنوان مهمان یک بازی را سریع شروع کنید."/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

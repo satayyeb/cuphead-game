@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cuphead.gfx.view.SignupPageController"
+            prefHeight="500" prefWidth="1200" stylesheets="@../css/style.css">
+
+    <center>
+        <VBox alignment="CENTER" maxWidth="450" spacing="13">
+            <Text styleClass="title" text="ثبت نام"/>
+            <Text/>
+            <HBox spacing="15">
+                <VBox alignment="CENTER" spacing="3">
+                    <TextField fx:id="username" onKeyReleased="#userPassCheck"
+                               promptText="نام کاربری خود را اینجا وارد کنید."/>
+                    <Text fx:id="usernameError" styleClass="smallError"/>
+                </VBox>
+                <Text text="نام کاربری:"/>
+            </HBox>
+            <HBox spacing="15">
+                <VBox alignment="CENTER" spacing="3">
+                    <PasswordField fx:id="password" onKeyReleased="#userPassCheck"
+                                   promptText="گذرواژه خود را اینجا وارد کنید."/>
+                    <Text styleClass="smallError" fx:id="passwordError"/>
+                </VBox>
+                <Text text="گذرواژه:"/>
+            </HBox>
+            <HBox spacing="15">
+                <PasswordField fx:id="password2" onKeyReleased="#userPassCheck"
+                               promptText="گذرواژه خود را دوباره وارد کنید."/>
+                <Text text="تکرار گذرواژه:"/>
+            </HBox>
+            <Text styleClass="medium" fx:id="error"/>
+            <Button text="ثبت نام" onAction="#login" onKeyPressed="#enter"/>
+            <Hyperlink onAction="#gotoLoginPage" text="قبلا ثبت نام کردید؟ وارد شوید."/>
+        </VBox>
+    </center>
+</BorderPane>

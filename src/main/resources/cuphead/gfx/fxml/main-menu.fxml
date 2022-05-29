@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="cuphead.gfx.view.MainMenuController"
+            prefHeight="500" prefWidth="1200"
+            stylesheets="@../css/style.css">
+    <center>
+        <VBox fx:id="list" alignment="CENTER" spacing="15">
+            <Text style="-fx-font-size: 40" text="لطفا یک گزینه را انتخاب کنید."/>
+            <Text/>
+            <Button text="بازی جدید" onAction="#startGame"/>
+            <Button text="ادامه بازی" onAction="#loadGame" fx:id="loadGame"/>
+            <Button text="حساب کاربری" onAction="#gotoProfileMenu" fx:id="profile"/>
+            <Button text="جدول امتیازات" onAction="#showScores"/>
+            <Button text="خروج از بازی" onAction="#exitTheGame"/>
+        </VBox>
+    </center>
+</BorderPane>

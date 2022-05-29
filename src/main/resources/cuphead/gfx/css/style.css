@@ -1,0 +1,78 @@
+* {
+    -fx-font-family: 'Arial';
+}
+
+BorderPane {
+    -fx-background-color: #f2e9ff;
+}
+
+Button {
+    -fx-font-size: 22;
+    -fx-font-family: "B Titr";
+    -fx-font-weight: bold;
+    -fx-max-width: 220;
+    -fx-max-height: 220;
+    -fx-background-color: #8d23b6;
+    -fx-text-fill: #ffffff;
+}
+
+
+/*Button:focused,*/
+Button:hover, Button:focused {
+    -fx-background-color: #570d73;
+}
+
+.innerButton {
+    -fx-font-size: 22;
+    -fx-font-family: "B Titr";
+    -fx-min-width: 260;
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+}
+
+.innerButton:hover, .innerButton:focused {
+    -fx-background-color: #e3cfff;
+}
+
+Text {
+    -fx-font-size: 25;
+    -fx-font-family: "B Mitra";
+}
+
+.small {
+    -fx-font-size: 18;
+}
+
+.title {
+    -fx-font-size: 60;
+    -fx-font-family: "B Titr";
+    -fx-font-weight: bold;
+}
+
+TextField,
+PasswordField {
+    -fx-font-size: 20;
+    -fx-font-family: "B Badr";
+    -fx-pref-width: 300;
+    -fx-alignment: center;
+    -fx-tile-alignment: center;
+}
+
+.smallError {
+    -fx-font-size: 15;
+}
+
+.medium {
+    -fx-font-size: 23;
+}
+
+.big {
+    -fx-font-size: 40;
+    -fx-font-family: "B Titr";
+    -fx-font-weight: bold;
+}
+
+HyperLink {
+    -fx-font-family: "B Badr";
+    -fx-font-size: 18;
+}
